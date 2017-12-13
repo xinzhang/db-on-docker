@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+
+    mysql-dev:
+      image: mysql:latest
+      environment:
+        MYSQL_ROOT_PASSWORD: password
+        MYSQL_DATABASE: blogapp
+      ports:
+        - "3307:3306"
+      volumes:
+        - "./my.conf:/etc/mysql/conf.d/config-file.cnf"
+        - "./data:/var/lib/mysql:rw"
+    
+    postgres-dev:
+      image: postgres:10
+      environment:
+        POSTGRES_USER: root
+        POSTGRES_PASSWORD: password
+        POSTGRES_DB: blogapp
+      ports:
+        - "5432:5432"
+
+    adminer:
+      image: adminer
+      ports:
+        - 8080:8080
+
+    # mysql-legacy:
+    #   image: mysql:5.7
+    #   environment:
+    #     MYSQL_ROOT_PASSWORD: password
+    #     MYSQL_DATABASE: legacyapp
+    #   ports:
+    #     - "3308:3306"
+
+    # client:
+    #   image: mysql:latest
+    #   depends_on:
+    #     - mysql-dev
+    #   command: mysql -uroot -ppassword -hmysql-dev blogapp
+
