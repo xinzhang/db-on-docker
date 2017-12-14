@@ -2,25 +2,32 @@ version: '3'
 
 services:
 
-    mysql-dev:
-      image: mysql:latest
-      environment:
-        MYSQL_ROOT_PASSWORD: password
-        MYSQL_DATABASE: blogapp
-      ports:
-        - "3307:3306"
-      volumes:
-        - "./my.conf:/etc/mysql/conf.d/config-file.cnf"
-        - "./data:/var/lib/mysql:rw"
+    # mysql-dev:
+    #   image: mysql:latest
+    #   environment:
+    #     MYSQL_ROOT_PASSWORD: password
+    #     MYSQL_DATABASE: blogapp
+    #   ports:
+    #     - "3307:3306"
+    #   volumes:
+    #     - "./my.conf:/etc/mysql/conf.d/config-file.cnf"
+    #     - "./data:/var/lib/mysql:rw"
     
-    postgres-dev:
-      image: postgres:10
-      environment:
-        POSTGRES_USER: root
-        POSTGRES_PASSWORD: password
-        POSTGRES_DB: blogapp
+    # postgres-dev:
+    #   image: postgres:10
+    #   environment:
+    #     POSTGRES_USER: root
+    #     POSTGRES_PASSWORD: password
+    #     POSTGRES_DB: blogapp
+    #   ports:
+    #     - "5432:5432"
+
+    mongodb-dev:
+      image: mongo:latest
       ports:
-        - "5432:5432"
+        - "27017:27017"
+      volumes:
+        - "./mongo_data:/data/db"
 
     adminer:
       image: adminer
