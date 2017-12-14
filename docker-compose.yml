@@ -29,6 +29,17 @@ services:
       volumes:
         - "./mongo_data:/data/db"
 
+  redis-dev:
+    #container_name: loa-dev-redis
+    image: redis:alpine
+    # build:
+    #   context: .
+    #   dockerfile: redis.dockerfile
+    ports:
+      - 6379:6379
+    # networks:
+    #   - loa-dev-network
+
     adminer:
       image: adminer
       ports:
